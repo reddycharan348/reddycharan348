@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolt.new: Development at Light Speed | reddycharan.me</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bolt-accent: #00D8FF; /* Electric Blue */
+            --bolt-dark: #0A0A0A;
+            --bolt-card: #171717;
+            --lightning: #FACC15;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bolt-dark);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Chakra Petch', sans-serif;
+        }
+
+        /* Electric Gradient Text */
+        .text-electric {
+            background: linear-gradient(90deg, #FFFFFF 0%, #00D8FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(0, 216, 255, 0.3);
+        }
+
+        /* Glassmorphism & Borders */
+        .glass-box {
+            background: rgba(23, 23, 23, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 0 1px rgba(0,0,0,0.2);
+        }
+        
+        .neon-border:hover {
+            border-color: var(--bolt-accent);
+            box-shadow: 0 0 20px rgba(0, 216, 255, 0.2);
+        }
+
+        /* Lightning Animation */
+        @keyframes flash {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        @keyframes slide-scan {
+            0% { top: 0%; opacity: 0; }
+            50% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        .scan-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: var(--bolt-accent);
+            box-shadow: 0 0 10px var(--bolt-accent);
+            animation: slide-scan 3s linear infinite;
+        }
+
+        .code-snippet {
+            font-family: 'Courier New', Courier, monospace;
+            background: #000;
+            border-left: 2px solid var(--bolt-accent);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--bolt-accent); }
+    </style>
+</head>
+<body class="antialiased selection:bg-cyan-500 selection:text-black">
+
+    <nav class="fixed w-full z-50 glass-box border-t-0 border-x-0 top-0">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-bolt text-cyan-400"></i>
+                <span class="text-xl font-bold tracking-tight text-white">reddycharan.me</span>
+            </div>
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-400">
+                <a href="https://www.reddycharan.me" class="hover:text-cyan-400 transition-colors">Home</a>
+                <a href="#" class="hover:text-cyan-400 transition-colors">AI Architect</a>
+                <a href="#" class="hover:text-cyan-400 transition-colors">Blog</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative pt-32 pb-20 px-4 overflow-hidden flex items-center min-h-[90vh]">
+        <div class="absolute inset-0 z-0 opacity-20" 
+             style="background-image: linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px); background-size: 40px 40px;">
+        </div>
+        
+        <div class="absolute top-20 right-20 w-64 h-64 bg-cyan-500/20 rounded-full blur-[80px]"></div>
+
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded border border-cyan-500/30 bg-cyan-900/10 mb-6">
+                    <i class="fa-solid fa-microchip text-cyan-400 text-xs"></i>
+                    <span class="text-xs font-bold uppercase tracking-wider text-cyan-400">Powered by WebContainers</span>
+                </div>
+                
+                <h1 class="text-6xl md:text-8xl font-bold mb-6 leading-none">
+                    Dev at the<br>
+                    <span class="text-electric">Speed of Light</span>
+                </h1>
+                
+                <p class="text-xl text-gray-400 mb-10 leading-relaxed max-w-xl">
+                    <strong>Bolt.new</strong> is not just an AI editor. It is a full-stack environment running <em>inside</em> your browser tab. No installation. No "works on my machine." Just prompt, preview, and deploy.
+                </p>
+
+                <div class="flex gap-4">
+                    <button class="group px-8 py-4 bg-white text-black rounded font-bold hover:bg-cyan-400 transition-colors duration-300 flex items-center gap-3">
+                        Start Prompting <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="glass-box rounded-lg overflow-hidden shadow-[0_0_50px_rgba(0,216,255,0.1)] relative">
+                <div class="bg-[#111] px-4 py-3 flex items-center gap-4 border-b border-gray-800">
+                    <div class="flex gap-2">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    </div>
+                    <div class="bg-gray-800 px-3 py-1 rounded text-xs text-gray-400 flex-1 text-center font-mono">bolt.new/project-alpha</div>
+                </div>
+                
+                <div class="grid grid-cols-2 h-[400px]">
+                    <div class="border-r border-gray-800 p-4 flex flex-col justify-end bg-black/50">
+                        <div class="space-y-4">
+                            <div class="flex gap-3">
+                                <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center"><i class="fa-solid fa-user text-xs"></i></div>
+                                <div class="text-sm text-gray-300 bg-gray-800 p-3 rounded-tr-lg rounded-bl-lg rounded-br-lg">
+                                    Create a landing page for a coffee shop with a dark theme and parallax scrolling.
+                                </div>
+                            </div>
+                            <div class="flex gap-3">
+                                <div class="w-8 h-8 bg-cyan-600 rounded-full flex items-center justify-center"><i class="fa-solid fa-bolt text-xs text-white"></i></div>
+                                <div class="text-sm text-gray-300">
+                                    <p class="mb-2">I'm installing <span class="text-cyan-400 font-mono">framer-motion</span> and setting up the component structure.</p>
+                                    <div class="h-1 w-full bg-gray-700 rounded overflow-hidden">
+                                        <div class="h-full bg-cyan-400 w-3/4"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white relative p-4 flex items-center justify-center overflow-hidden">
+                        <div class="text-center">
+                            <h2 class="text-4xl font-bold text-gray-900 mb-2 font-serif">Espresso Nero</h2>
+                            <p class="text-gray-600 mb-4">Artisan roasts. Dark nights.</p>
+                            <button class="bg-black text-white px-6 py-2 rounded-full text-sm">Order Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-4 bg-black">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold mb-16 text-center">The <span class="text-cyan-400">WebContainers</span> Revolution</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-box p-8 rounded hover:bg-gray-900 transition duration-300 group neon-border">
+                    <i class="fa-brands fa-node-js text-5xl text-green-500 mb-6 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="text-xl font-bold mb-3">Node.js in Browser</h3>
+                    <p class="text-gray-400 text-sm">
+                        Bolt doesn't run on a remote server. It runs Node.js directly in your Chrome tab. This means zero latency and offline capability.
+                    </p>
+                </div>
+                
+                <div class="glass-box p-8 rounded hover:bg-gray-900 transition duration-300 group neon-border">
+                    <i class="fa-solid fa-shield-halved text-5xl text-purple-500 mb-6 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="text-xl font-bold mb-3">Secure by Design</h3>
+                    <p class="text-gray-400 text-sm">
+                        Code executes inside the browser sandbox. No more worrying about malicious npm packages compromising your local machine.
+                    </p>
+                </div>
+
+                <div class="glass-box p-8 rounded hover:bg-gray-900 transition duration-300 group neon-border">
+                    <i class="fa-solid fa-server text-5xl text-orange-500 mb-6 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="text-xl font-bold mb-3">Instant Boot</h3>
+                    <p class="text-gray-400 text-sm">
+                        Server-side environments take minutes to spin up. Bolt boots in milliseconds. It is faster than your local VS Code.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-4 relative border-t border-gray-800">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row gap-12">
+            <div class="md:w-1/2">
+                <h2 class="text-3xl font-bold mb-6">Stop Configuring.<br>Start Creating.</h2>
+                <p class="text-gray-400 mb-8 leading-relaxed">
+                    The biggest friction in modern web development is the "Environment Tax"—configuring Webpack, Docker, Env variables, and Dependencies. Bolt pays that tax for you.
+                </p>
+                
+                <div class="space-y-6">
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 rounded bg-cyan-900/50 flex items-center justify-center text-cyan-400 font-bold">1</div>
+                        <div>
+                            <h4 class="font-bold text-white">Prompt</h4>
+                            <p class="text-sm text-gray-500">"Build a Kanban board using React and Tailwind with drag-and-drop."</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 rounded bg-cyan-900/50 flex items-center justify-center text-cyan-400 font-bold">2</div>
+                        <div>
+                            <h4 class="font-bold text-white">Refine</h4>
+                            <p class="text-sm text-gray-500">The AI edits multiple files simultaneously. You see the preview update live.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 rounded bg-cyan-900/50 flex items-center justify-center text-cyan-400 font-bold">3</div>
+                        <div>
+                            <h4 class="font-bold text-white">Deploy</h4>
+                            <p class="text-sm text-gray-500">One click generates a production URL via Netlify or Vercel.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="md:w-1/2">
+                <div class="glass-box p-1 rounded-lg">
+                    <div class="bg-black p-4 rounded text-xs font-mono text-gray-300 overflow-x-auto">
+                        <p class="text-gray-500"># Traditional Workflow (15 mins)</p>
+                        <p>> npx create-next-app my-app</p>
+                        <p>> cd my-app</p>
+                        <p>> npm install framer-motion tailwindcss ...</p>
+                        <p>> npm run dev</p>
+                        <p class="text-red-500">Error: EADDRINUSE: address already in use</p>
+                        <br>
+                        <p class="text-cyan-500"># Bolt Workflow (15 seconds)</p>
+                        <p>> Prompt: "Create NextJS app with Framer"</p>
+                        <p class="text-green-500">✓ Environment Ready.</p>
+                        <p class="text-green-500">✓ App Running on port 3000.</p>
+                    </div>
+                </div>
+                <div class="mt-6 text-center">
+                    <p class="text-sm text-gray-500 italic">"It feels like downloading RAM." — Senior Engineer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-center text-3xl font-bold mb-12">Who is Bolt For?</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass-box p-6 rounded hover:border-cyan-500 transition">
+                    <i class="fa-solid fa-cubes text-cyan-400 mb-4"></i>
+                    <h3 class="font-bold text-white">PMs</h3>
+                    <p class="text-xs text-gray-400 mt-2">Validate ideas instantly without waiting for engineering resources.</p>
+                </div>
+                <div class="glass-box p-6 rounded hover:border-cyan-500 transition">
+                    <i class="fa-solid fa-code text-cyan-400 mb-4"></i>
+                    <h3 class="font-bold text-white">Designers</h3>
+                    <p class="text-xs text-gray-400 mt-2">Turn Figma concepts into functional prototypes in minutes.</p>
+                </div>
+                <div class="glass-box p-6 rounded hover:border-cyan-500 transition">
+                    <i class="fa-solid fa-chalkboard-user text-cyan-400 mb-4"></i>
+                    <h3 class="font-bold text-white">Educators</h3>
+                    <p class="text-xs text-gray-400 mt-2">Teach React without spending 2 hours on environment setup.</p>
+                </div>
+                <div class="glass-box p-6 rounded hover:border-cyan-500 transition">
+                    <i class="fa-solid fa-rocket text-cyan-400 mb-4"></i>
+                    <h3 class="font-bold text-white">Founders</h3>
+                    <p class="text-xs text-gray-400 mt-2">Build your MVP over the weekend. No devops required.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-gray-800 bg-[#050505]">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-sm">
+            <div class="text-gray-500">
+                <p>&copy; 2026 reddycharan.me. Built with ⚡️.</p>
+            </div>
+            <div class="flex gap-6 mt-4 md:mt-0">
+                <a href="https://www.reddycharan.me" class="text-gray-400 hover:text-white transition">reddycharan.me</a>
+                <a href="#" class="text-gray-400 hover:text-white transition">Twitter</a>
+                <a href="#" class="text-gray-400 hover:text-white transition">GitHub</a>
+            </div>
+        </div>
+        <div class="text-center mt-8 text-xs text-gray-600">
+            Authored by @reddycharan.me
+        </div>
+    </footer>
+
+</body>
+</html>
