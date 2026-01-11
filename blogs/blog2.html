@@ -3,334 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anti-Gravity IDE: Future of Development</title>
+    <title>HeyGen: Redefining the Future of AI Video Creation</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Outfit:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
     <style>
-        /* Custom scrollbar for a sleek look */
-        ::-webkit-scrollbar {
-            width: 8px;
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f172a, #020617);
+            color: #f1f5f9;
+            overflow-x: hidden;
         }
-        ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
+        h1, h2, h3 {
+            font-family: 'Outfit', sans-serif;
         }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #a78bfa 0%, #67e8f9 100%);
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(180deg, #8b5cf6 0%, #22d3ee 100%);
-        }
-
-        /* Smooth animations for elements */
-        .animate-fade-in {
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-        .animate-slide-up {
-            animation: slideUp 0.8s ease-out forwards;
-        }
-        .animate-scale-up {
-            animation: scaleUp 0.8s ease-out forwards;
-        }
-        .animate-transform-hover {
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        }
-        .animate-transform-hover:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(107, 114, 128, 0.3);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes slideUp {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        @keyframes scaleUp {
-            from { transform: scale(0.9); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        /* Glassmorphism backdrop filter */
-        .glassmorphism {
-            backdrop-filter: blur(15px) saturate(180%);
-            -webkit-backdrop-filter: blur(15px) saturate(180%);
-            background-color: rgba(17, 24, 39, 0.75);
-            border: 1px solid rgba(255, 255, 255, 0.125);
-            border-radius: 12px;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
-        }
-
         .gradient-text {
-            background-clip: text;
+            background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899);
             -webkit-background-clip: text;
-            color: transparent;
-            background-image: linear-gradient(135deg, #a78bfa 0%, #67e8f9 100%);
+            -webkit-text-fill-color: transparent;
         }
-        .gradient-border {
-            border-image-source: linear-gradient(135deg, #a78bfa 0%, #67e8f9 100%);
-            border-image-slice: 1;
-            border-width: 3px;
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
         }
-        .gradient-shadow {
-            box-shadow: 0 0 20px rgba(107, 114, 128, 0.3), 0 0 40px rgba(107, 114, 128, 0.2);
+        .feature-hover:hover {
+            transform: translateY(-5px);
+            border-color: rgba(168, 85, 247, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .btn-glow:hover {
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.6);
         }
     </style>
 </head>
-<body class="bg-gray-900 text-gray-200 font-sans min-h-screen flex flex-col items-center justify-center p-4 overflow-x-hidden">
+<body class="antialiased">
 
-    <script>
-        tailwind.config = {
-            darkMode: 'class', // Not strictly needed for single file, but good practice
-            theme: {
-                extend: {
-                    fontFamily: {
-                        display: ['Outfit', 'sans-serif'],
-                        body: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        // Darker, more sophisticated palette
-                        'primary-dark': '#0a101a',
-                        'secondary-dark': '#1a202c',
-                        'accent-purple': '#a78bfa', // Violet-400
-                        'accent-cyan': '#67e8f9',   // Cyan-400
-                        'text-light': '#e2e8f0',
-                        'text-muted': '#94a3b8',
-                        'glass-bg': 'rgba(255, 255, 255, 0.05)',
-                        'glass-border': 'rgba(255, 255, 255, 0.1)',
-                    },
-                    backgroundImage: {
-                        'hero-gradient': 'linear-gradient(135deg, #a78bfa 0%, #67e8f9 100%)',
-                        'section-gradient': 'linear-gradient(180deg, rgba(26, 32, 44, 0.7) 0%, rgba(17, 24, 39, 0.5) 100%)',
-                    },
-                    boxShadow: {
-                        'glass-inset': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.2)',
-                        'premium-card': '0 15px 35px rgba(107, 114, 128, 0.1), 0 5px 15px rgba(107, 114, 128, 0.07)',
-                    },
-                    animation: {
-                        'fade-in': 'fadeIn 1s ease-out forwards',
-                        'slide-up': 'slideUp 1s ease-out forwards',
-                        'scale-up': 'scaleUp 1s ease-out forwards',
-                        'spin-slow': 'spin 3s linear infinite',
-                        'pulse-glow': 'pulseGlow 2s infinite',
-                    },
-                    keyframes: {
-                        pulseGlow: {
-                            '0%, 100%': { opacity: 0.5, transform: 'scale(1.0)' },
-                            '50%': { opacity: 1, transform: 'scale(1.05)' },
-                        }
-                    }
-                },
-            },
-            plugins: [],
-        };
-    </script>
+    <section class="relative min-h-screen flex items-center justify-center py-20 px-6">
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-purple-600/20 rounded-full blur-[120px] animate-pulse"></div>
+            <div class="absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] bg-blue-600/20 rounded-full blur-[120px] animate-pulse"></div>
+        </div>
+        
+        <div class="relative z-10 text-center max-w-5xl">
+            <div class="inline-block px-4 py-1 mb-6 border border-purple-500/30 rounded-full bg-purple-500/10 text-purple-400 text-sm font-medium tracking-wide">
+                🎥 THE FUTURE OF VIDEO IS HERE
+            </div>
+            <h1 class="text-6xl md:text-8xl font-bold mb-8 leading-tight">
+                Mastering <span class="gradient-text">HeyGen</span>: The AI Video Revolution
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-400 mb-12 max-w-3xl mx-auto leading-relaxed">
+                Create professional-grade business videos with AI avatars in minutes. No cameras, no studios—just pure innovation.
+            </p>
+            <div class="flex flex-wrap justify-center gap-6">
+                <a href="#explore" class="btn-glow bg-gradient-to-r from-indigo-600 to-purple-600 px-10 py-5 rounded-full text-white font-bold text-lg transition-all duration-300">
+                    Get Started Now
+                </a>
+            </div>
+        </div>
+    </section>
 
-    <div class="container mx-auto max-w-6xl px-4 py-16 lg:py-24">
-
-        <!-- Hero Section -->
-        <section id="hero" class="text-center relative overflow-hidden py-16 md:py-24 px-4 rounded-xl mb-16 glassmorphism animate-fade-in">
-            <div class="absolute inset-0 z-0 opacity-30" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTk0OCIgaGVpZ2h0PSI5NzQiIHZpZXdCb3g9IjAgMCAxOTQ4IDk3NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTcwMi40ODQgNzQyLjA0NkM2MzMuMTQ0IDgwNi43MDQgNTM1LjcwOCA4MzEuNDQ0IDQzMS45NjQgODMxLjQ0NEMzMzEuMDUyIDgzMS40NDQgMjQxLjgwOCA3OTYuNzQ0IDE3Mi40ODQgNzQyLjA0NkM4Ni4xODQgNjY4LjI0OSA0Ni45NTMyIDU2OS4xNjEgNDYuOTUzMiA0NjguMjIyTDQ2Ljk1MzIgMUM0Ni45NTMyIDE1Mi40NjggODYuMTg0IDI1MS41NTYgMTcyLjQ4NCAzMjUuMzU0QzI0MS44MDggMzYwLjA1NCAzMzEuMDUyIDM4MC44MDQgNDMxLjk2NCAzODAuODA0QzUzNS43MDggMzgwLjgwNCA2MzMuMTQ0IDM2MC4wNTQgNzAyLjQ4NCAzMjUuMzU0TDcwMi40ODQgMTIxLjQ0NkM3NzEuODI0IDU3LjA4MyA4NjkuNjQ4IDM1LjAwMSA5NjguMDM0IDM1LjAwMUMxMDY2LjQyIDM1LjAwMSAxMTY0LjI0NCA1Ny4wODMgMTI3NC42NDQgMTIxLjQ0NkMxMzg1LjE2IDk3LjU1NCAxNDk2LjA4OSA4MC40NzEgMTYxMS43NjEgODAuNDcxQzE3NjYuMjM5IDgwLjQ3MSAxODgzNi4xMTkgOTcuNTU0IDE5NDguMDA0IDEyMS40NDZMMTk0OC4wMDQgNDY4LjIyMkMxOTQ4LjAwNCA1NjkuMTYxIDE5MDguNzcgNjY4LjI0OSAxODM0LjQ4MSA3NDIuMDQ2QzE3NjQuMTM2IDgwNi43MDQgMTY2Ni4yOTIgODM5LjQ0NCAxNTcxLjA0OSA4MzkuNDQ0QzE0NjcuODQ4IDgzOS40NDQgMTM3MS44NjQgODE1LjMwOCAxMzAzLjE2OCA3NjkuNTA0TDcwMi40ODQgNzQyLjA0NloiIGZpbGwtb3BhY2l0eT0iMC4zIiBzdHJva2U9InVybkdyYXhpZW50KDAgMCAtOTAuNjc1IDEwMCksc2tldW5kMTk0OCAwIDk3NCkgZmlsbD0iIzA5MDkzZiIvPgo8cGF0aCBkPSJNMTQxMy44MDQgMjQ1LjMxNkM3NzguMjU2IDMwNi4yMjIgMzg2Ljk0NCA2OTQuODQ4IDQ0Ny44NTIgMTM1NS40MjRMNDQ3Ljg1MiA5NTRDNDQ3Ljg1MiA5NTQgNDQ3Ljg1MiAxNjUwLjA1MyA4MzkuMzQ0IDE2NTIuMjY1QzEyMTAuMjcyIDE2NTcuNDcgMTU4OS4xMzYgMTIzMy43ODcgMTQxMy44MDQgMjQ1LjMxNkwiMTQxMy44MDQgMjQ1LjMxNloiIGZpbGwtb3BhY2l0eT0iMC4yIiBzdHJva2U9InVybkdyYXhpZW50KDAgMCAxOTQ4IDk3NCkgZmlsbD0iIzA5MDkzZiIvPgo8L3N2Zz4='); background-size: cover; background-position: center;"></div>
-            <div class="relative z-10">
-                <h1 class="text-5xl md:text-7xl font-extrabold mb-4 font-display leading-tight animate-scale-up">
-                    <span class="gradient-text">Anti-Gravity IDE</span>: <br class="md:hidden"> Redefining Software Creation
-                </h1>
-                <p class="text-lg md:text-xl font-body text-text-muted max-w-3xl mx-auto mb-8 animate-slide-up delay-200">
-                    Empowering students, founders, and freelancers to build software with unprecedented ease, inspired by Google's vision for accessible, AI-driven development.
+    <section class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <h2 class="text-4xl font-bold mb-8 italic">The Paradigm Shift 🌌</h2>
+                <p class="text-lg text-slate-300 mb-6 leading-relaxed">
+                    Traditional video production is a bottleneck. It requires expensive equipment, perfect lighting, and hours of editing. HeyGen **democratizes** this process by using generative AI to create realistic digital twins.
                 </p>
-                <div class="flex justify-center space-x-4 animate-fade-in delay-400">
-                    <a href="#concepts" class="px-8 py-4 bg-white bg-opacity-10 text-white font-bold font-display rounded-lg hover:bg-white hover:bg-opacity-20 transition duration-300 shadow-md backdrop-filter backdrop-blur-lg border border-white border-opacity-20">Explore Concepts</a>
-                    <a href="#takeaways" class="px-8 py-4 bg-gradient-to-r from-accent-purple to-accent-cyan text-white font-bold font-display rounded-lg hover:shadow-lg transition duration-300 shadow-md">Practical Steps</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Core Concepts Section -->
-        <section id="concepts" class="mb-16 lg:mb-24">
-            <h2 class="text-4xl md:text-5xl font-extrabold text-center font-display mb-12 animate-fade-in">
-                The <span class="gradient-text">Paradigm Shift</span>
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Concept 1: Cloud-Native -->
-                <div class="glassmorphism p-6 rounded-xl animate-transform-hover delay-200">
-                    <div class="flex items-center mb-4">
-                        <div class="text-accent-purple text-3xl mr-4 animate-pulse-glow">☁️</div>
-                        <h3 class="text-2xl font-display font-bold">Cloud-Native Development</h3>
-                    </div>
-                    <p class="font-body text-text-muted">
-                        Leverage platforms like GCP for always-available, consistent, and scalable environments. Democratizes access, enabling collaboration from any device.
-                    </p>
-                </div>
-
-                <!-- Concept 2: AI as Co-Pilot -->
-                <div class="glassmorphism p-6 rounded-xl animate-transform-hover delay-300">
-                    <div class="flex items-center mb-4">
-                        <div class="text-accent-cyan text-3xl mr-4 animate-pulse-glow">🤖</div>
-                        <h3 class="text-2xl font-display font-bold">AI as a Co-Pilot</h3>
-                    </div>
-                    <p class="font-body text-text-muted">
-                        LLMs and advanced AI interpret natural language to assist with code generation, debugging, and ideation, reducing complexity and boosting creativity.
-                    </p>
-                </div>
-
-                <!-- Concept 3: Visual Development -->
-                <div class="glassmorphism p-6 rounded-xl animate-transform-hover delay-400">
-                    <div class="flex items-center mb-4">
-                        <div class="text-accent-purple text-3xl mr-4 animate-pulse-glow">🎨</div>
-                        <h3 class="text-2xl font-display font-bold">Visual & No-Code/Low-Code</h3>
-                    </div>
-                    <p class="font-body text-text-muted">
-                        Empowers non-programmers with drag-and-drop interfaces and visual editors, allowing rapid prototyping and application creation with minimal traditional coding.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Beneficiaries Section -->
-        <section id="beneficiaries" class="mb-16 lg:mb-24">
-            <h2 class="text-4xl md:text-5xl font-extrabold text-center font-display mb-12 animate-fade-in">
-                Empowering <span class="gradient-text">Every Builder</span>
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="glassmorphism p-6 rounded-xl animate-slide-up delay-200">
-                    <div class="flex items-center mb-4">
-                        <div class="text-accent-cyan text-3xl mr-4">🎓</div>
-                        <h3 class="text-2xl font-display font-bold">Students & Aspiring Builders</h3>
-                    </div>
-                    <p class="font-body text-text-muted">
-                        Removes initial technical hurdles, allowing focus on logic and problem-solving. Learn by doing, rapidly prototyping ideas.
-                    </p>
-                </div>
-                <div class="glassmorphism p-6 rounded-xl animate-slide-up delay-300">
-                    <div class="flex items-center mb-4">
-                        <div class="text-accent-purple text-3xl mr-4">🚀</div>
-                        <h3 class="text-2xl font-display font-bold">Founders & Startups</h3>
-                    </div>
-                    <p class="font-body text-text-muted">
-                        Accelerate MVP development and market validation. Reduce technical dependencies and costs, enabling faster iteration.
-                    </p>
-                </div>
-                <div class="md:col-span-2 glassmorphism p-6 rounded-xl animate-slide-up delay-400">
-                    <div class="flex items-center mb-4">
-                        <div class="text-accent-cyan text-3xl mr-4">💼</div>
-                        <h3 class="text-2xl font-display font-bold">Freelancers & Agencies</h3>
-                    </div>
-                    <p class="font-body text-text-muted">
-                        Increase efficiency, deliver projects faster, and automate repetitive tasks. Enhance competitiveness and profitability by focusing on value.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Workflow & Advantages Section -->
-        <section id="workflow" class="mb-16 lg:mb-24">
-            <h2 class="text-4xl md:text-5xl font-extrabold text-center font-display mb-12 animate-fade-in">
-                From <span class="gradient-text">Idea to Reality</span>
-            </h2>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="relative animate-scale-up delay-200 glassmorphism p-8 rounded-xl">
-                    <div class="absolute inset-0 z-0 opacity-20" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik05NiAxOTJDNzMuMjY4OSAxOTIgMTgzLjQ1MyA3My4yNjg5IDk2IDk2QzEzOC43MzExIDkzLjI2ODkgMTgzLjQ1MyAwIDk2IDBDNzMuMjY4OSAwIDIzLjE2MDQgMjMuMTYwNCAwIDQ4QzAgNzIuNzMxMSAzNi40NjQ2IDE0Ni43MzExIDE2MCAxNjguMTI1QzEyMC44NzMgMTYwLjUwMiA5NiAxMjAuODcyOSA5NiA5NkwiOTYgMTkyeiIgZmlsbD0iI2E3OGJmYSIvPgo8cGF0aCBkPSJNMTY4IDk2QzE2OCA3MS42ODkyIDE1NC44NDMgNDguNDI4OSAxMzAuNTcgMjQuMTY4MkM5Ni41MDQzIDEyMC40MDkgNDggMTY4IDQ4IDE2OEM0OCAxNjggNzEuNjg5MiAxOTIgOTYgMTkyeiIgZmlsbD0iIzY3ZThmOSIvPgo8L3N2Zz4='); background-size: 50%; background-repeat: no-repeat; background-position: bottom -40px right -40px;"></div>
-                    <h3 class="text-3xl font-display font-bold mb-4">Workflow Example</h3>
-                    <p class="font-body text-text-muted mb-4">
-                        A founder describes app functions in natural language. An AI co-pilot suggests structure, pre-populates UI, and generates database models. The founder visually arranges elements and adds logic via drag-and-drop, creating a functional prototype within hours.
-                    </p>
-                    <p class="font-body text-text-muted">
-                        Feedback leads to new features prompted to AI, which proposes changes and generates necessary code. AI assists with integrations, guiding API connections for rapid, agile iteration.
-                    </p>
-                </div>
-                <div class="animate-scale-up delay-300">
-                    <h3 class="text-3xl font-display font-bold mb-4">Key Advantages</h3>
-                    <ul class="space-y-4 font-body text-text-muted">
-                        <li class="flex items-center">
-                            <span class="text-accent-purple font-bold mr-3">✓</span>
-                            <p>
-                                <span class="font-bold">Accessibility:</span> Lowers the barrier to entry, diversifying problem-solvers and fostering innovation.
-                            </p>
-                        </li>
-                        <li class="flex items-center">
-                            <span class="text-accent-cyan font-bold mr-3">✓</span>
-                            <p>
-                                <span class="font-bold">Speed & Efficiency:</span> Rapid prototyping, AI-assisted coding, and automated deployments accelerate time-to-market and learning.
-                            </p>
-                        </li>
-                        <li class="flex items-center">
-                            <span class="text-accent-purple font-bold mr-3">✓</span>
-                            <p>
-                                <span class="font-bold">Reduced Cost:</span> Less reliance on expensive developer teams and lower infrastructure overhead make innovation financially viable.
-                            </p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Practical Takeaways Section -->
-        <section id="takeaways" class="mb-16 lg:mb-24">
-            <h2 class="text-4xl md:text-5xl font-extrabold text-center font-display mb-12 animate-fade-in">
-                <span class="gradient-text">Practical Steps</span> Today
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Takeaway 1 -->
-                <div class="glassmorphism p-6 rounded-xl animate-transform-hover delay-200">
-                    <div class="flex items-center mb-4">
-                        <div class="text-accent-cyan text-3xl mr-4">💻</div>
-                        <h3 class="text-2xl font-display font-bold">Embrace Cloud-Native</h3>
-                    </div>
-                    <p class="font-body text-text-muted">
-                        Utilize GCP, Firebase, or similar cloud providers for hosting, databases, and backend services (serverless, managed).
-                    </p>
-                </div>
-
-                <!-- Takeaway 2 -->
-                <div class="glassmorphism p-6 rounded-xl animate-transform-hover delay-300">
-                    <div class="flex items-center mb-4">
-                        <div class="text-accent-purple text-3xl mr-4">✨</div>
-                        <h3 class="text-2xl font-display font-bold">Leverage No-Code/Low-Code</h3>
-                    </div>
-                    <p class="font-body text-text-muted">
-                        Experiment with tools like AppSheet, Webflow, or Bubble to build small projects and understand their capabilities.
-                    </p>
-                </div>
-
-                <!-- Takeaway 3 -->
-                <div class="glassmorphism p-6 rounded-xl animate-transform-hover delay-400">
-                    <div class="flex items-center mb-4">
-                        <div class="text-accent-cyan text-3xl mr-4">💡</div>
-                        <h3 class="text-2xl font-display font-bold">Integrate AI in Workflow</h3>
-                    </div>
-                    <p class="font-body text-text-muted">
-                        Use AI assistants for writing, brainstorming, or generating simple code snippets. Treat it as your personal AI co-pilot.
-                    </p>
-                </div>
-
-                <!-- Takeaway 4 -->
-                <div class="md:col-span-2 lg:col-span-1 glassmorphism p-6 rounded-xl animate-transform-hover delay-500">
-                    <div class="flex items-center mb-4">
-                        <div class="text-accent-purple text-3xl mr-4">🗣️</div>
-                        <h3 class="text-2xl font-display font-bold">Focus on Prompt Engineering</h3>
-                    </div>
-                    <p class="font-body text-text-muted">
-                        Learn to articulate needs clearly to AI tools. This skill is becoming as crucial as traditional coding.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Conclusion -->
-        <section class="text-center mt-16 lg:mt-24">
-            <div class="glassmorphism p-8 rounded-xl animate-fade-in">
-                <p class="text-xl font-body font-light leading-relaxed">
-                    The anti-gravity IDE signifies a democratization of software development, where <span class="font-bold gradient-text">imagination is the primary constraint, not technical skill</span>. Embrace experimentation, build with new tools, and learn from every iteration to step into this future of accessible innovation.
+                <p class="text-lg text-slate-300 mb-8 leading-relaxed">
+                    This isn't just about efficiency; it's about **redefining** how we communicate globally. Language barriers vanish as your avatar speaks 40+ languages with perfect lip-syncing.
                 </p>
+                <div class="flex gap-4">
+                    <div class="p-4 glass-card">
+                        <span class="block text-3xl font-bold text-purple-400">90%</span>
+                        <span class="text-sm text-slate-400">Cost Reduction</span>
+                    </div>
+                    <div class="p-4 glass-card">
+                        <span class="block text-3xl font-bold text-blue-400">10x</span>
+                        <span class="text-sm text-slate-400">Faster Output</span>
+                    </div>
+                </div>
             </div>
-        </section>
+            <div class="glass-card p-8 animate-float">
+                <div class="rounded-xl overflow-hidden bg-slate-800 aspect-video flex items-center justify-center border border-white/10">
+                    <span class="text-slate-500 text-lg">Digital Avatar Interface Preview</span>
+                </div>
+                <div class="mt-6 space-y-4">
+                    <div class="h-2 bg-slate-700 rounded w-3/4"></div>
+                    <div class="h-2 bg-slate-700 rounded w-1/2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    </div>
+    <section class="py-24 bg-slate-900/50">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16">Who Is This For? 👥</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 feature-hover transition-all duration-300">
+                    <div class="text-4xl mb-6">🎓</div>
+                    <h3 class="text-2xl font-bold mb-4">Students</h3>
+                    <p class="text-slate-400">Create stunning visual presentations and portfolio videos that stand out to recruiters without needing a pro setup.</p>
+                </div>
+                <div class="glass-card p-8 feature-hover transition-all duration-300">
+                    <div class="text-4xl mb-6">🚀</div>
+                    <h3 class="text-2xl font-bold mb-4">Founders</h3>
+                    <p class="text-slate-400">Scale your personalized sales outreach and product demos. Reach thousands of leads with custom-named video messages.</p>
+                </div>
+                <div class="glass-card p-8 feature-hover transition-all duration-300">
+                    <div class="text-4xl mb-6">🎨</div>
+                    <h3 class="text-2xl font-bold mb-4">Freelancers</h3>
+                    <p class="text-slate-400">Offer "Video Content Creator" as a service. Deliver high-quality talking-head videos to clients in record time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 max-w-5xl mx-auto">
+        <div class="glass-card p-12 border-purple-500/20">
+            <h2 class="text-4xl font-bold mb-10 text-center">Key Advantages ⚡</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="flex items-center space-x-4">
+                    <div class="text-green-400">✔</div>
+                    <p class="text-lg">100+ Diverse AI Avatars</p>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="text-green-400">✔</div>
+                    <p class="text-lg">Perfect Lip-Sync Technology</p>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="text-green-400">✔</div>
+                    <p class="text-lg">Text-to-Video in 40+ Languages</p>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="text-green-400">✔</div>
+                    <p class="text-lg">Instant Face-Swap Capabilities</p>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="text-green-400">✔</div>
+                    <p class="text-lg">Custom Avatar (Digital Twin) creation</p>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="text-green-400">✔</div>
+                    <p class="text-lg">Seamless API Integrations</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 max-w-7xl mx-auto">
+        <h2 class="text-4xl font-bold mb-16 text-center">Workflow: From Idea to Viral Video 🤖</h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">1</div>
+                <h4 class="font-bold mb-2">Select Avatar</h4>
+                <p class="text-sm text-slate-400">Choose from 100+ presets or upload your own photo.</p>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">2</div>
+                <h4 class="font-bold mb-2">Input Script</h4>
+                <p class="text-sm text-slate-400">Paste your text or upload an audio file for the voiceover.</p>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 bg-pink-600 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">3</div>
+                <h4 class="font-bold mb-2">Customize Scene</h4>
+                <p class="text-sm text-slate-400">Add backgrounds, text overlays, and background music.</p>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 bg-orange-600 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">4</div>
+                <h4 class="font-bold mb-2">Generate</h4>
+                <p class="text-sm text-slate-400">Hit submit and let the AI render your HD video in minutes.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 text-center">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-4xl font-bold mb-8">Ready to Innovate? 🌟</h2>
+            <p class="text-xl text-slate-400 mb-12">
+                The barrier to entry for high-quality video content has officially collapsed. HeyGen is not just a tool; it's your personal production studio that never sleeps. The future belongs to those who embrace automation.
+            </p>
+            <a href="https://reddycharan.me" class="text-purple-400 font-bold hover:text-purple-300 underline transition-all">Explore more on reddycharan.me</a>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-white/10 text-center text-slate-500 text-sm">
+        <p>&copy; 2026 reddycharan.me | Built for the Visionaries</p>
+    </footer>
 
 </body>
 </html>
