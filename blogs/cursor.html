@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursor: The AI-First Code Editor | reddycharan.me</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --cursor-bg: #0C0C0C;
+            --cursor-panel: #161616;
+            --cursor-border: #2A2A2A;
+            --accent-primary: #3794FF; /* Cursor Blue */
+            --accent-secondary: #B4F9F8; /* Mint Glow */
+            --text-muted: #888888;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--cursor-bg);
+            color: #EAEAEA;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            letter-spacing: -0.02em;
+        }
+
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Subtle Glow Effects */
+        .glow-text {
+            text-shadow: 0 0 20px rgba(55, 148, 255, 0.4);
+        }
+
+        .panel {
+            background: var(--cursor-panel);
+            border: 1px solid var(--cursor-border);
+            transition: all 0.2s ease;
+        }
+
+        .panel:hover {
+            border-color: var(--accent-primary);
+            box-shadow: 0 4px 30px rgba(55, 148, 255, 0.1);
+        }
+
+        /* Keyboard Key Styling */
+        .kbd {
+            background: #222;
+            border: 1px solid #444;
+            border-bottom: 2px solid #444;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8em;
+            color: #fff;
+            box-shadow: 0 2px 0 rgba(0,0,0,0.5);
+        }
+
+        /* Cursor Blink Animation */
+        .cursor-blink {
+            display: inline-block;
+            width: 8px;
+            height: 1.2em;
+            background-color: var(--accent-primary);
+            animation: blink 1s step-end infinite;
+            vertical-align: middle;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Code Block Styling */
+        .code-window {
+            background: #000;
+            border: 1px solid #333;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .line-number {
+            color: #444;
+            user-select: none;
+            padding-right: 12px;
+            text-align: right;
+            display: inline-block;
+            width: 30px;
+        }
+
+        /* Suggestion Ghost Text */
+        .ghost-text {
+            color: #555;
+            font-style: italic;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--cursor-bg); }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-primary); }
+    </style>
+</head>
+<body class="antialiased selection:bg-blue-900 selection:text-white">
+
+    <nav class="fixed w-full z-50 border-b border-white/5 bg-black/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                    <div class="w-2 h-2 bg-black transform rotate-45"></div>
+                </div>
+                <span class="text-lg font-bold tracking-tight">reddycharan.me</span>
+            </div>
+            <div class="hidden md:flex space-x-8 text-sm text-gray-400">
+                <a href="https://www.reddycharan.me" class="hover:text-white transition-colors">Home</a>
+                <a href="#" class="hover:text-white transition-colors">Editors</a>
+                <a href="#" class="hover:text-white transition-colors">Blog</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative pt-40 pb-20 px-4 overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-blue-900/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/20 bg-blue-900/10 mb-8">
+                <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+                <span class="text-xs font-mono text-blue-400">Fork of VS Code</span>
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
+                Code at the <br>
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-white to-blue-200 glow-text">Speed of Thought</span>
+            </h1>
+            
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
+                <strong>Cursor</strong> is not just an extension. It's an AI-native code editor that understands your entire codebase. Predicts your next edit. Fixes bugs before you run them.
+            </p>
+
+            <div class="flex justify-center gap-4">
+                <button class="px-8 py-3 bg-white text-black rounded-md font-medium hover:bg-gray-200 transition shadow-[0_0_20px_rgba(255,255,255,0.15)]">
+                    Download for Mac
+                </button>
+                <button class="px-8 py-3 border border-gray-700 rounded-md font-medium text-gray-300 hover:border-gray-500 hover:text-white transition">
+                    Read the Manifesto
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="code-window rounded-xl overflow-hidden relative group">
+                <div class="bg-[#1e1e1e] px-4 py-2 flex justify-between items-center border-b border-[#333]">
+                    <span class="text-xs text-gray-500 font-mono">utils/data_processor.py</span>
+                    <div class="flex gap-2 text-xs text-gray-600 font-mono">
+                        <span>Ln 42, Col 18</span>
+                        <span>UTF-8</span>
+                    </div>
+                </div>
+
+                <div class="p-6 font-mono text-sm leading-7 text-gray-300 relative">
+                    <div><span class="line-number">40</span>def process_user_data(users):</div>
+                    <div><span class="line-number">41</span>&nbsp;&nbsp;&nbsp;&nbsp;processed = []</div>
+                    <div><span class="line-number">42</span>&nbsp;&nbsp;&nbsp;&nbsp;for user in users:</div>
+                    <div class="relative">
+                        <span class="line-number">43</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">if user.is_active:</span>
+                        <span class="text-gray-500 opacity-60">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;processed.append({
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id": user.id,
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"email": user.email.lower()
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;})
+                        </span>
+                    </div>
+                    <div><span class="line-number">44</span>&nbsp;&nbsp;&nbsp;&nbsp;return processed<span class="cursor-blink"></span></div>
+                    
+                    <div class="absolute top-20 right-10 bg-[#252526] border border-[#454545] p-2 rounded shadow-xl text-xs flex items-center gap-2 animate-bounce">
+                        <span class="text-gray-400">Copilot++</span>
+                        <span class="kbd text-[10px]">Tab</span>
+                        <span class="text-gray-400">to accept</span>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center text-gray-500 mt-6 text-sm">
+                Cursor predicts the next logical block of code, not just the next word.
+            </p>
+        </div>
+    </section>
+
+    <section class="py-24 px-4 bg-[#0F0F0F]">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold mb-16 text-center">Why Switch from VS Code?</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="panel p-8 rounded-lg">
+                    <div class="flex items-center justify-between mb-6">
+                        <i class="fa-solid fa-keyboard text-2xl text-blue-400"></i>
+                        <span class="kbd">Cmd + K</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Edit in Place</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Don't leave your file to chat. Highlight a block of code, hit <span class="kbd">Cmd+K</span>, and type <em>"Refactor this to use async/await."</em> Cursor rewrites it instantly.
+                    </p>
+                </div>
+
+                <div class="panel p-8 rounded-lg">
+                    <div class="flex items-center justify-between mb-6">
+                        <i class="fa-solid fa-book-open text-2xl text-green-400"></i>
+                        <span class="font-mono text-xs text-gray-500">@Codebase</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Context Awareness</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Standard AI chats don't know your other files. Cursor indexes your entire project. Ask <em>"Where is the Auth logic defined?"</em> and it points to the exact file.
+                    </p>
+                </div>
+
+                <div class="panel p-8 rounded-lg">
+                    <div class="flex items-center justify-between mb-6">
+                        <i class="fa-solid fa-image text-2xl text-purple-400"></i>
+                        <span class="font-mono text-xs text-gray-500">Multimodal</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Vision Support</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Drag a screenshot of a UI design directly into the chat. Cursor analyzes the image and generates the CSS/HTML to match it perfectly.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-4 border-t border-white/5">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-16 items-center">
+            <div class="md:w-1/2">
+                <h2 class="text-3xl font-bold mb-6">Built for <span class="text-blue-400">Flow State.</span></h2>
+                <p class="text-gray-400 mb-6 text-lg">
+                    The modern developer spends 40% of their time reading code and only 10% writing it. Cursor flips this ratio.
+                </p>
+                
+                <div class="space-y-6">
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-full bg-[#1A1A1A] flex items-center justify-center border border-white/10 shrink-0">
+                            <i class="fa-solid fa-graduation-cap text-gray-300"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white">For Learners</h4>
+                            <p class="text-sm text-gray-500">Highlight any confusing syntax and press Chat. It's like having a Senior Dev pair-programming with you 24/7.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-full bg-[#1A1A1A] flex items-center justify-center border border-white/10 shrink-0">
+                            <i class="fa-solid fa-briefcase text-gray-300"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white">For Seniors</h4>
+                            <p class="text-sm text-gray-500">Automate the boilerplate. Generate unit tests, documentation, and types in seconds, focusing your brain on architecture.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="md:w-1/2 w-full">
+                <div class="bg-[#111] p-6 rounded-xl border border-white/10">
+                    <h3 class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-4 text-center">The "Tab" Difference</h3>
+                    <div class="flex justify-between items-end h-40 gap-4">
+                        <div class="w-1/2 bg-[#222] rounded-t-lg relative group h-24 transition-all hover:h-32">
+                            <div class="absolute bottom-2 left-0 w-full text-center text-xs text-gray-400">Copilot</div>
+                            <div class="absolute top-[-30px] w-full text-center text-xs text-gray-600 opacity-0 group-hover:opacity-100">Single Line</div>
+                        </div>
+                        <div class="w-1/2 bg-gradient-to-t from-blue-900 to-blue-600 rounded-t-lg relative group h-36 transition-all hover:h-40">
+                            <div class="absolute bottom-2 left-0 w-full text-center text-xs text-white font-bold">Cursor Tab</div>
+                            <div class="absolute top-[-30px] w-full text-center text-xs text-blue-400 opacity-0 group-hover:opacity-100">Full Function Diff</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-black border-t border-white/10 mt-10">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+            <p>&copy; 2026 reddycharan.me. All rights reserved.</p>
+            <div class="flex gap-6 mt-4 md:mt-0">
+                <a href="https://www.reddycharan.me" class="hover:text-blue-400 transition">Website</a>
+                <a href="#" class="hover:text-blue-400 transition">Twitter</a>
+                <a href="#" class="hover:text-blue-400 transition">GitHub</a>
+            </div>
+        </div>
+        <div class="text-center mt-8 text-xs text-gray-700">
+            Written by @reddycharan.me
+        </div>
+    </footer>
+
+</body>
+</html>
