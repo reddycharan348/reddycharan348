@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0YGJE1G1FC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-0YGJE1G1FC');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | E CHARAN KUMAR REDDY</title>
+    <meta name="description"
+        content="Blog posts by E Charan Kumar Reddy - AI insights, prompt engineering tips, and tech explorations.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="blog.css">
+</head>
+
+<body>
+    <canvas id="bg-canvas"></canvas>
+    <div class="bg-overlay"></div>
+
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">E CHARAN<span>.</span></a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="index.html#about" class="nav-link">About</a></li>
+                    <li><a href="index.html#projects" class="nav-link">Projects</a></li>
+                    <li><a href="blog.html" class="nav-link active">Blog</a></li>
+                    <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="blog-hero">
+            <div class="cosmic-starfield"></div>
+            <div class="cosmic-nebula"></div>
+            <div class="container">
+                <div class="blog-hero-content fade-in-up">
+                    <span class="section-subtitle">My Thoughts</span>
+                    <h1 class="section-title">Blog</h1>
+                    <p>Exploring AI, prompt engineering, and the future of technology</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="blog-grid" id="blogGrid">
+                    <div class="blog-loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading blogs...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Blog Data -->
+    <script src="blogs/data.js"></script>
+
+    <!-- Render Blogs -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const grid = document.getElementById('blogGrid');
+
+            // Check if BLOG_DATA exists and is not empty
+            if (typeof BLOG_DATA === 'undefined' || !BLOG_DATA || BLOG_DATA.length === 0) {
+                grid.innerHTML = '<p style="text-align:center;color:var(--text-muted);grid-column:1/-1;">No blogs yet. Coming soon!</p>';
+                return;
+            }
+
+            grid.innerHTML = BLOG_DATA.map((blog, index) => {
+                const [file, title, desc, date, cat, img] = blog;
+                const dateStr = date ? new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
+
+                // Add style delay for staggered animation effect if desired, and 'visible' class to ensure they appear
+                const delayStyle = `style="transition-delay: ${index * 100}ms"`;
+
+                return `
+            <article class="blog-card glass fade-in-up visible" ${delayStyle}>
+                <div class="blog-card-content">
+                    <div class="blog-meta">
+                        ${dateStr ? `<span><i class="fas fa-calendar"></i> ${dateStr}</span>` : ''}
+                        <span><i class="fas fa-tag"></i> ${cat || 'General'}</span>
+                    </div>
+                    <h3>${title}</h3>
+                    <p>${desc || 'Click to read more...'}</p>
+                    <a href="blogs/${file}" class="blog-read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>`;
+            }).join('');
+        });
+    </script>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 E CHARAN KUMAR REDDY. All Rights Reserved.</p>
+                <div class="footer-socials">
+                    <a href="https://github.com/reddycharan348" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/e-charan-kumar-reddy/" target="_blank"><i
+                            class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
