@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antigravity IDE: The Future of Code</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Outfit:wght@300;500;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #030712;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #4ade80, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .grid-bg {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .glass-card {
+            background: rgba(17, 24, 39, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+        .floating-element {
+            animation: float 8s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .glow-point {
+            box-shadow: 0 0 20px 5px rgba(74, 222, 128, 0.4);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-green-500 selection:text-black">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'neon-green': '#4ade80',
+                        'deep-space': '#030712',
+                        'code-gray': '#1e293b',
+                    }
+                }
+            }
+        };
+    </script>
+
+    <nav class="fixed w-full z-50 top-0 border-b border-white/5 bg-deep-space/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold tracking-tight">
+                reddy<span class="text-neon-green">charan</span>.me
+            </div>
+            <a href="https://reddycharan.me" class="text-sm font-mono hover:text-neon-green transition">
+                ← Back to Home
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative min-h-screen flex items-center justify-center pt-20 grid-bg">
+        <div class="absolute top-1/3 left-1/4 w-72 h-72 bg-blue-500/10 rounded-full blur-[100px] animate-pulse"></div>
+        <div class="absolute bottom-1/3 right-1/4 w-96 h-96 bg-green-500/10 rounded-full blur-[100px] animate-pulse delay-700"></div>
+
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <div class="inline-block px-3 py-1 mb-6 border border-neon-green/30 rounded-full bg-neon-green/5 text-neon-green text-xs font-mono tracking-widest uppercase">
+                Released with Gemini 3.0
+            </div>
+            <h1 class="text-6xl md:text-8xl font-black mb-6 leading-tight">
+                Code Without <br>
+                <span class="gradient-text">Gravity.</span>
+            </h1>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-10">
+                The file system is dead. Welcome to <strong>Antigravity</strong>, the spatial IDE where code lives on an infinite canvas and AI agents work alongside you in real-time.
+            </p>
+            
+            <div class="flex justify-center gap-4">
+                <button class="px-8 py-4 bg-neon-green text-black font-bold rounded-lg hover:shadow-[0_0_30px_rgba(74,222,128,0.4)] transition duration-300">
+                    Enter the Workspace
+                </button>
+                <button class="px-8 py-4 border border-white/10 rounded-lg hover:bg-white/5 transition font-mono">
+                    $ npm install antigravity
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-deep-space">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-4xl font-bold mb-6">Escape the <br>Linear Trap</h2>
+                    <p class="text-gray-400 text-lg mb-6">
+                        For 40 years, we've coded in linear text files buried in folders. It's cognitive overload. You spend more time navigating tabs than solving problems.
+                    </p>
+                    <p class="text-gray-400 text-lg">
+                        <strong>Antigravity IDE</strong> breaks the screen. It visualizes your entire architecture as a living, breathing node graph.
+                    </p>
+                </div>
+                <div class="glass-card p-1 rounded-2xl floating-element">
+                    <div class="bg-gray-900 rounded-xl overflow-hidden aspect-video relative border border-white/10">
+                        <div class="absolute inset-0 grid-bg opacity-50"></div>
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 bg-black border border-neon-green rounded p-4 shadow-2xl z-20">
+                            <div class="text-xs text-gray-500 mb-2">AuthService.ts</div>
+                            <div class="h-2 w-3/4 bg-gray-700 rounded mb-2"></div>
+                            <div class="h-2 w-1/2 bg-gray-700 rounded mb-2"></div>
+                            <div class="h-2 w-full bg-gray-700 rounded"></div>
+                        </div>
+                        <div class="absolute top-20 left-20 w-32 bg-gray-800 border border-white/10 rounded p-3 opacity-60">
+                            <div class="text-[10px] text-blue-400">Database</div>
+                        </div>
+                        <div class="absolute bottom-20 right-20 w-32 bg-gray-800 border border-white/10 rounded p-3 opacity-60">
+                            <div class="text-[10px] text-purple-400">Frontend UI</div>
+                        </div>
+                        <svg class="absolute inset-0 w-full h-full pointer-events-none">
+                            <line x1="33%" y1="30%" x2="50%" y2="50%" stroke="#4ade80" stroke-width="1" stroke-dasharray="4" />
+                            <line x1="66%" y1="70%" x2="50%" y2="50%" stroke="#4ade80" stroke-width="1" stroke-dasharray="4" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 relative">
+        <div class="absolute inset-0 bg-blue-900/5 skew-y-3 transform origin-top-left"></div>
+        <div class="max-w-7xl mx-auto relative z-10">
+            <h2 class="text-4xl font-bold text-center mb-16">The Physics of <span class="text-neon-green">Antigravity</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 rounded-2xl hover:border-neon-green/50 transition duration-500 group">
+                    <div class="w-12 h-12 rounded-lg bg-green-500/10 flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition">🗺️</div>
+                    <h3 class="text-xl font-bold mb-4">Spatial Canvas</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Zoom out to see your system architecture. Zoom in to edit a single function. Code organizes itself logically based on data flow, not file names.
+                    </p>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl hover:border-blue-500/50 transition duration-500 group">
+                    <div class="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition">🤖</div>
+                    <h3 class="text-xl font-bold mb-4">Agent Swarm</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        You don't just have one AI; you have a team. Assign an agent to "Write Unit Tests" for a block, while another agent "Optimizes SQL Queries" simultaneously.
+                    </p>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl hover:border-purple-500/50 transition duration-500 group">
+                    <div class="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition">🔮</div>
+                    <h3 class="text-xl font-bold mb-4">Neural Refactoring</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Highlight a cluster of spaghetti code and click "Antigravity". The IDE visually untangles dependencies and rewrites the logic for clarity instantly.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold mb-10 border-l-4 border-neon-green pl-6">A Day in the Life</h2>
+            
+            <div class="space-y-8">
+                <div class="flex gap-6">
+                    <div class="flex-shrink-0 w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center font-bold text-neon-green">1</div>
+                    <div>
+                        <h4 class="text-xl font-bold text-white">The Prompt</h4>
+                        <p class="text-gray-400 mt-2">You speak to the canvas: <em class="text-gray-300">"Build a user authentication flow using Supabase."</em></p>
+                    </div>
+                </div>
+                
+                <div class="flex gap-6">
+                    <div class="flex-shrink-0 w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center font-bold text-neon-green">2</div>
+                    <div>
+                        <h4 class="text-xl font-bold text-white">Generation & Visualization</h4>
+                        <p class="text-gray-400 mt-2">Instead of dumping text, Antigravity generates three distinct nodes: <span class="font-mono text-sm bg-gray-800 px-1 rounded">Login.tsx</span>, <span class="font-mono text-sm bg-gray-800 px-1 rounded">AuthHook.ts</span>, and <span class="font-mono text-sm bg-gray-800 px-1 rounded">SupabaseClient.ts</span>, connected by visible data wires.</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-6">
+                    <div class="flex-shrink-0 w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center font-bold text-neon-green">3</div>
+                    <div>
+                        <h4 class="text-xl font-bold text-white">The "Ghost" Fix</h4>
+                        <p class="text-gray-400 mt-2">As you connect the nodes, a red wire appears. The <strong>Debugger Agent</strong> (a ghost cursor) hovers over it and auto-corrects a type mismatch before you even notice it.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 bg-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="p-8 border border-dashed border-gray-700 rounded-3xl">
+                    <h3 class="text-2xl font-bold text-white mb-4">👨‍💻 For Developers</h3>
+                    <p class="text-gray-400 mb-4">Focus on logic, not syntax. Antigravity handles imports, linting, and boilerplate automatically. It's like coding with a senior architect watching your back 24/7.</p>
+                    <ul class="space-y-2 text-sm text-gray-500">
+                        <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Instant context switching</li>
+                        <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Zero-config environments</li>
+                    </ul>
+                </div>
+                
+                <div class="p-8 border border-dashed border-gray-700 rounded-3xl">
+                    <h3 class="text-2xl font-bold text-white mb-4">🚀 For Tech Leads</h3>
+                    <p class="text-gray-400 mb-4">Onboard new hires in minutes. Instead of explaining a file directory, show them the "Canvas Map" of the project. Visualize debt and bottlenecks instantly.</p>
+                    <ul class="space-y-2 text-sm text-gray-500">
+                        <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> Visual Architecture Diagrams (Auto-generated)</li>
+                        <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> Real-time team collaboration cursor</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-white/10 text-center relative overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-t from-green-900/20 to-transparent pointer-events-none"></div>
+        
+        <div class="relative z-10">
+            <h2 class="text-3xl font-bold mb-6">Ready to float?</h2>
+            <p class="text-gray-500 mb-8 max-w-md mx-auto">Join the waitlist for the Antigravity Beta. The future of coding is weightless.</p>
+            
+            <a href="https://reddycharan.me" class="inline-flex items-center justify-center px-8 py-3 text-base font-bold text-black transition-all duration-200 bg-neon-green rounded-full hover:bg-green-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 ring-offset-gray-900">
+                Visit reddycharan.me
+            </a>
+            
+            <div class="mt-12 text-sm text-gray-600">
+                <p>Written by the official blog writer for @reddycharan.me</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Antigravity IDE: The Workspace of the Future",
+      "keywords": ["Antigravity IDE", "Spatial Computing", "AI Coding", "Gemini 3.0", "Future of Programming"],
+      "author": "reddycharan.me",
+      "readingTime": "6 min read",
+      "category": "Development Tools"
+    }
+    </script>
+
+</body>
+</html>
