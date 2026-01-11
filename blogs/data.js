@@ -6,5 +6,6 @@
 
 const BLOG_DATA = [
     ["gemini.html", "Gemini 3.0: The Age of Autonomous Agents", "Discover how Gemini 3.0's shift to autonomous agents with Deep Think and Nano Banana is transforming productivity for creators and developers.", "2026-01-11", "AI & Automation", "gemini-3-0.png"],
-    ["Antigravity.html", "Antigravity IDE: Coding Without Limits", "Explore the revolutionary Antigravity IDE, a spatial, agent-first coding environment that replaces files with an infinite canvas.", "2026-01-15", "Dev Tools", "antigravity-ide.png"],// Add new blogs above this line
+    ["Antigravity.html", "Antigravity IDE: Coding Without Limits", "Explore the revolutionary Antigravity IDE, a spatial, agent-first coding environment that replaces files with an infinite canvas.", "2026-01-11", "Dev Tools", "antigravity-ide.png"],
+    ["aistudio.html", "Google AI Studio: From Prompt to Product", "Stop wrestling with infrastructure. Google AI Studio is the fastest way to prototype with Gemini models, offering a seamless bridge between idea and execution.", "2026-01-12", "Artificial Intelligence", "google-ai-studio.png"],// Add new blogs above this line
 ];
