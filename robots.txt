@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://www.reddycharan.me/sitemap.xml
+Sitemap: https://www.reddycharan.me/sitemap-pages.xml
+Sitemap: https://www.reddycharan.me/sitemap-blog.xml
