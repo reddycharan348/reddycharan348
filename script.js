@@ -508,6 +508,7 @@ function initRotatingTitle() {
     const titles = [
         'AI+ Prompt Engineer',
         'Vibe Coder',
+        'AI Agent Specialist',
         'AI Enthusiast',
         'Tech Explorer'
     ];
